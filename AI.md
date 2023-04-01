@@ -10,7 +10,7 @@
 
 **树搜索**的框架如图，这是经典的**BFS**广度优先搜索。后续的算法都是在其上的优化，减少搜索开销。
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233038702.png" alt="image-20230401233038702" style="zoom:50%;" />
+<img src="assets/image-20230401233038702.png" alt="image-20230401233038702" style="zoom:50%;" />
 
 ### 启发式搜索
 
@@ -24,13 +24,13 @@
 
     A*算法是启发式搜索的一种，所采取的f(n)形式是：
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233047782.png" alt="image-20230401233047782" style="zoom:50%;" />
+    <img src="assets/image-20230401233047782.png" alt="image-20230401233047782" style="zoom:50%;" />
 
     所谓贪婪算法就是f(n) = h(n)的情况，这里加上了g(n)就变成了A*算法。可以解决某些贪婪算法不具有完备性的情况。
 
     **A*算法具有完备性、最优性也需要评价函数满足可容性、一致性**：
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233052464.png" alt="image-20230401233052464" style="zoom:50%;" />
+    <img src="assets/image-20230401233052464.png" alt="image-20230401233052464" style="zoom:50%;" />
 
     其中h*(n)是实际最小代价，可以假设树空间已知、根据理论推理得到。c(n, a, n')是从节点n执行动作a到节点n‘的单步实际代价。
 
@@ -40,7 +40,7 @@
 
 - 最大最小搜索Minmax Search
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233102005.png" alt="image-20230401233102005" style="zoom:40%;" />
+    <img src="assets/image-20230401233102005.png" alt="image-20230401233102005" style="zoom:40%;" />
 
     注意这其实是一种DFS，对树的遍历顺序是**前序遍历**。最大最小搜索中，**MIN层取子节点最小值，同时被上一层MAX层筛选最大节点；MAX层取子节点最大值，同时被上一层MIN层筛选最小节点**。这是一种对树的全搜索、全遍历，不进行剪枝。
 
@@ -48,7 +48,7 @@
 
     以下用A代替Alpha，B代替Beta。AB剪枝是对最大最小搜索的改进，进行剪枝，减少了不必要的搜索。
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233115823.png" alt="image-20230401233115823" style="zoom:50%;" />
+    <img src="assets/image-20230401233115823.png" alt="image-20230401233115823" style="zoom:50%;" />
 
     其中b是每轮的选择树，m是树高。
 
@@ -60,7 +60,7 @@
 
 主要有以下四个步骤：
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233132599.png" alt="image-20230401233132599" style="zoom:40%;" />
+<img src="assets/image-20230401233132599.png" alt="image-20230401233132599" style="zoom:40%;" />
 
 ## 统计机器学习
 

@@ -6,7 +6,7 @@
 
 每个进程又PCB表示，ready queue中用链表连接着若干个PCB。
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232550752.png" alt="image-20230401232550752" style="zoom:50%;" />
+<img src="assets/image-20230401232550752.png" alt="image-20230401232550752" style="zoom:50%;" />
 
 - 指标
 
@@ -72,7 +72,7 @@ critical section（临界区）: 进程的关键代码段，代码中表现为�
 
 通用模型：
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232557013.png" alt="image-20230401232557013" style="zoom:40%;" />
+<img src="assets/image-20230401232557013.png" alt="image-20230401232557013" style="zoom:40%;" />
 
 注意critical section和remainder section是程序本来就有的部分，人工划分而成，而entry section和exit section则是为了实现进程同步加入的控制代码段。实际一个进程可能有多个临界区，这只是简化模型。entry section和exit section，也就临界区进入前后的控制代码段的不同决定了进程同步算法。为了简化我们考虑两个进程Pi和Pj的调度。
 
@@ -82,7 +82,7 @@ critical section（临界区）: 进程的关键代码段，代码中表现为�
 
 - Spinlock算法
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232604861.png" alt="image-20230401232604861" style="zoom:50%;" />
+    <img src="assets/image-20230401232604861.png" alt="image-20230401232604861" style="zoom:50%;" />
 
     旋转锁spinlock是一个全局变量，初始为0。思想是进程在临界区中将旋转锁设成1，其他部分设为0，这样就可以互斥。
 
@@ -94,7 +94,7 @@ critical section（临界区）: 进程的关键代码段，代码中表现为�
 
 - Algorithm 1
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232613093.png" alt="image-20230401232613093" style="zoom:50%;" />
+    <img src="assets/image-20230401232613093.png" alt="image-20230401232613093" style="zoom:50%;" />
 
     相比于设置控制临界区访问的全局锁，算法1设置了turn全局变量，表示当前可以占用临界区的进程号，当离开临界区时，将turn赋成另一个进程号。此时可以保证互斥。
 
@@ -102,7 +102,7 @@ critical section（临界区）: 进程的关键代码段，代码中表现为�
 
 - Algorithm 2
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232619236.png" alt="image-20230401232619236" style="zoom:50%;" />
+    <img src="assets/image-20230401232619236.png" alt="image-20230401232619236" style="zoom:50%;" />
 
     相比于只用一个全局变量turn表示占用临界区的进程号，此算开辟了进程个数个布尔变量flag[]，flag[i]表示进程Pi是否准备好进入临界区。相比于算法1，算法2在进程内只有权限设置自己的属性值flag，无权干涉其他进程的标志属性值。
 
@@ -110,7 +110,7 @@ critical section（临界区）: 进程的关键代码段，代码中表现为�
 
 - Peterson‘s solution
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232624333.png" alt="image-20230401232624333" style="zoom:40%;" />
+    <img src="assets/image-20230401232624333.png" alt="image-20230401232624333" style="zoom:40%;" />
 
     设置双重保证：turn = i表示该轮到进程i进入临界区，flag[i] = true表示进程已准备好进入临界区。相当于时算法1、2的结合。
 
@@ -120,7 +120,7 @@ critical section（临界区）: 进程的关键代码段，代码中表现为�
 
     注意算法1、2和Peterson都是两个进程的简单调度模型，Bakery是Peterson推广到n个进程的通用形式，又称面包房算法。
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232638078.png" alt="image-20230401232638078" style="zoom:50%;" />
+    <img src="assets/image-20230401232638078.png" alt="image-20230401232638078" style="zoom:50%;" />
 
     每个进程在初始进入循环时会获得一个number（递增，但由于多线程调度的存在，可能重复，0视为无效不参与竞争），这个number和进程号的大小构成的偏序关系决定了进程的优先级。
 
@@ -136,7 +136,7 @@ critical section（临界区）: 进程的关键代码段，代码中表现为�
 
 lock的基本模型是
 
-![image-20230401232643107](/Users/jerryliterm/Database/Notes/assets/image-20230401232643107.png)
+![image-20230401232643107](assets/image-20230401232643107.png)
 
 在锁的acquire和release之间执行临界区代码。
 
@@ -148,13 +148,13 @@ Disable interrupt：锁住状态屏蔽所有中断，如果长时间这样做会
 
 - TestAndSet指令，可以将目标指针内容设为true，返回原来target的值。
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232700475.png" alt="image-20230401232700475" style="zoom:50%;" />
+<img src="assets/image-20230401232700475.png" alt="image-20230401232700475" style="zoom:50%;" />
 
 
 
 - Swap指令
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232708717.png" alt="image-20230401232708717" style="zoom:40%;" />
+    <img src="assets/image-20230401232708717.png" alt="image-20230401232708717" style="zoom:40%;" />
 
     Swap交换两个布尔量的值。key是每个进程自己的标志，lock是共享的、初值为false的全局变量。
 
@@ -168,7 +168,7 @@ Disable interrupt：锁住状态屏蔽所有中断，如果长时间这样做会
 
 
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232729561.png" alt="image-20230401232729561" style="zoom:40%;" />
+<img src="assets/image-20230401232729561.png" alt="image-20230401232729561" style="zoom:40%;" />
 
 
 
@@ -205,7 +205,7 @@ wait和signal都是原子操作，分别对信号量递减、递增，并根据v
 
 资源分配图：
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232745500.png" alt="image-20230401232745500" style="zoom:50%;" />
+<img src="assets/image-20230401232745500.png" alt="image-20230401232745500" style="zoom:50%;" />
 
 
 
@@ -236,7 +236,7 @@ wait和signal都是原子操作，分别对信号量递减、递增，并根据v
 
     安全模式定义如下
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232759843.png" alt="image-20230401232759843" style="zoom:50%;" />
+    <img src="assets/image-20230401232759843.png" alt="image-20230401232759843" style="zoom:50%;" />
 
     含义是存在进程序列，使后面的进程需要的任何一种资源，其request量（总需求量-已分配量）都小于当前该资源可用量 + 前面的进程对该资源占有量的总和。其含义是：当前state下至少可以保证P1～Pn依次**顺序执行（等价含义）**，从而一定不会发生死锁。
 
@@ -244,7 +244,7 @@ wait和signal都是原子操作，分别对信号量递减、递增，并根据v
 
     安全模式的验证算法：可以看出，有贪婪的意思，找所需资源小于可用资源的进程优先完整，完成后归还其分配的资源。
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232817070.png" alt="image-20230401232817070" style="zoom:40%;" />
+    <img src="assets/image-20230401232817070.png" alt="image-20230401232817070" style="zoom:40%;" />
 
     
 
@@ -254,7 +254,7 @@ wait和signal都是原子操作，分别对信号量递减、递增，并根据v
 
     具体方法就是，**模拟**资源分配后的情况，如果不安全，就放弃这次分配。
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232827505.png" alt="image-20230401232827505" style="zoom:40%;" />
+    <img src="assets/image-20230401232827505.png" alt="image-20230401232827505" style="zoom:40%;" />
 
     具体分为三步：
 
@@ -301,7 +301,7 @@ wait和signal都是原子操作，分别对信号量递减、递增，并根据v
 
 ## 文件系统实现
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232838475.png" alt="image-20230401232838475" style="zoom:50%;" />
+<img src="assets/image-20230401232838475.png" alt="image-20230401232838475" style="zoom:50%;" />
 
 - FCB(File Control Block)文件控制块
 
@@ -309,7 +309,7 @@ wait和signal都是原子操作，分别对信号量递减、递增，并根据v
     
 - 文件访问原理
 
-  <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232843932.png" alt="image-20230401232843932" style="zoom:50%;" />
+  <img src="assets/image-20230401232843932.png" alt="image-20230401232843932" style="zoom:50%;" />
   
   其中目录用于根据文件名定位文件位置(disk中的FCB)，目录可以用链表或者哈希表来实现。另外每个打开的文件在内存中会维护一个表，用于将文件中数据的逻辑index转化到disk中的FCB中进行查找。
   
@@ -331,7 +331,7 @@ wait和signal都是原子操作，分别对信号量递减、递增，并根据v
   
 - 空闲空间管理
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232849924.png" alt="image-20230401232849924" style="zoom:50%;" />
+    <img src="assets/image-20230401232849924.png" alt="image-20230401232849924" style="zoom:50%;" />
 
     
 

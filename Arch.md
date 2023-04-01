@@ -2,7 +2,7 @@
 
 计算机类型
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233145155.png" alt="image-20230401233145155" style="zoom:50%;" />
+<img src="assets/image-20230401233145155.png" alt="image-20230401233145155" style="zoom:50%;" />
 
 注意没有实现MISD的计算机。
 
@@ -16,11 +16,11 @@ Throughput吞吐量：单位时间内完成工作的量
 
 MIPS(Millions of Instructions per Second): 
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233151091.png" alt="image-20230401233151091" style="zoom:50%;" />
+<img src="assets/image-20230401233151091.png" alt="image-20230401233151091" style="zoom:50%;" />
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233158566.png" alt="image-20230401233158566" style="zoom:40%;" />
+<img src="assets/image-20230401233158566.png" alt="image-20230401233158566" style="zoom:40%;" />
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233218868.png" alt="image-20230401233218868" style="zoom:50%;" />
+<img src="assets/image-20230401233218868.png" alt="image-20230401233218868" style="zoom:50%;" />
 
 
 
@@ -44,7 +44,7 @@ control hazard：涉及到条件跳转时，后面的指令在执行时还不知
 
 stall（阻塞）；暂停流水线，也称加入气泡bubble。已经在流水线的工作继续执行，但不再进行Instruction Fetch。 等到之前的指令已经基本完成，后面指令所需要的资源已经有了的时候，再继续流水线。stall过多会降低流水线性能，使得CPI比1大。
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233227264.png" alt="image-20230401233227264" style="zoom:50%;" />
+<img src="assets/image-20230401233227264.png" alt="image-20230401233227264" style="zoom:50%;" />
 
 - 结构冒险
 
@@ -68,7 +68,7 @@ stall（阻塞）；暂停流水线，也称加入气泡bubble。已经在流水
 		
     - load数据冒险：ld指令也是在最后才写回，但是其需要先计算地址值然后在MEM阶段才能真正读到寄存器的目标值，所以比R型晚了一步。一样可以设置MEM/WB的寄存器，但此时只能解决其指令隔一条指令的指令的数据冒险问题，对于load情况下的下一条指令，如果发生数据冒险，必须stall。
     
-        <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233235431.png" alt="image-20230401233235431" style="zoom:50%;" />
+        <img src="assets/image-20230401233235431.png" alt="image-20230401233235431" style="zoom:50%;" />
     
     - 汇编优化：load stall比较影响性能，生成汇编代码时，可以通过改变指令顺序的方式，尽量避免出现load stall的情况。
     
@@ -94,7 +94,7 @@ stall（阻塞）；暂停流水线，也称加入气泡bubble。已经在流水
 
         可以通过提早分析跳转条件（ID阶段）来减少stall时钟：
 
-        <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233242067.png" alt="image-20230401233242067" style="zoom:40%;" />
+        <img src="assets/image-20230401233242067.png" alt="image-20230401233242067" style="zoom:40%;" />
 
         这样在在ID/EX处就可以知道是否跳转，从而只需要stall一个时钟。
 
@@ -114,14 +114,14 @@ stall（阻塞）；暂停流水线，也称加入气泡bubble。已经在流水
 
     非流水化时，后者是前者的+1
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233259612.png" alt="image-20230401233259612" style="zoom:50%;" />
+    <img src="assets/image-20230401233259612.png" alt="image-20230401233259612" style="zoom:50%;" />
 
 
 
 
 # 异常处理
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233311453.png" alt="image-20230401233311453" style="zoom:40%;" />
+<img src="assets/image-20230401233311453.png" alt="image-20230401233311453" style="zoom:40%;" />
 
 
 
@@ -131,7 +131,7 @@ stall（阻塞）；暂停流水线，也称加入气泡bubble。已经在流水
 
 - mstatus（machine status）
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233323058.png" alt="image-20230401233323058" style="zoom:50%;" />
+    <img src="assets/image-20230401233323058.png" alt="image-20230401233323058" style="zoom:50%;" />
 
     Global interrupt-enable bits（中断激活比特）
 
@@ -192,7 +192,7 @@ cpu经常需要读写mem，mem中一部分将拷贝到cache（更小）中。当
     write buffers：准备一个小的cache暂存将要写回mem的内容
     
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233336332.png" alt="image-20230401233336332" style="zoom:50%;" />
+<img src="assets/image-20230401233336332.png" alt="image-20230401233336332" style="zoom:50%;" />
 
 根据block在cache中的位置分配方式，可以将cache分为全关联、组关联、直接关联。
 
@@ -206,7 +206,7 @@ cache中有若干个block的位置，mem中的block在载入cache时会根据某
 
 cache分为若干个组，每个组内都有n个block的位置，mem中的block会先根据索引确定其分到cache的哪个组，在组内随意给位置，也就是“组外直接相连，组内全相连“。一般n是二次幂。这种访问时，只需要在组内检查block即可。
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233342794.png" alt="image-20230401233342794" style="zoom:50%;" />
+<img src="assets/image-20230401233342794.png" alt="image-20230401233342794" style="zoom:50%;" />
 
 实际工作中，给出的是需要访问的字节的地址（比如64位，32位，可能是虚地址），然后对这个地址进行拆分解析，分为Tag、Index、Byte offset三部分。
 
@@ -230,11 +230,11 @@ byteoffset用于从cache的block中提取目标字节。
 
 性能指标
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233413698.png" alt="image-20230401233413698" style="zoom:50%;" />
+<img src="assets/image-20230401233413698.png" alt="image-20230401233413698" style="zoom:50%;" />
 
 
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233429842.png" alt="image-20230401233429842" style="zoom:40%;" />
+<img src="assets/image-20230401233429842.png" alt="image-20230401233429842" style="zoom:40%;" />
 
 可以看到跟存储有关的主要影响指标是内存访问率和AMAT，前者主要跟程序有关，后者是主要控制对象。
 
@@ -242,7 +242,7 @@ AMAT即平均访存时间，AMAT = Hit time + Miss Rate * Miss Penalty，提高c
 
 **减少hit time、减少miss rate、减少miss penalty**三者进行，另外还有并行技术
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233439537.png" alt="image-20230401233439537" style="zoom:50%;" />
+<img src="assets/image-20230401233439537.png" alt="image-20230401233439537" style="zoom:50%;" />
 
 ### Reduce Miss Penalty
 
@@ -268,7 +268,7 @@ AMAT即平均访存时间，AMAT = Hit time + Miss Rate * Miss Penalty，提高c
 
     victim cache通常是另设的一个较小的、全相连的cache，存的内容是近期主cache中被替换(牺牲)掉的块。当miss的时候，并不是直接去内存中找，而是先去victim cache中查看是否有需要的块，如果有，将其跟内存中的对应block交换。
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233504064.png" alt="image-20230401233504064" style="zoom:40%;" />
+    <img src="assets/image-20230401233504064.png" alt="image-20230401233504064" style="zoom:40%;" />
 
     注意这和多级cache不同，实际上地址跟主cache、victim cache的访问是并行的。
 
@@ -302,7 +302,7 @@ Conflict：由于cache相连模式，一个区域只能放有限个块，多余�
 
 - 编译技术
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233514262.png" alt="image-20230401233514262" style="zoom:50%;" />
+    <img src="assets/image-20230401233514262.png" alt="image-20230401233514262" style="zoom:50%;" />
 
     编译提升性能的主要思路是利用空间局部性原则和时间局部性原则，尽可能让相近的数据被连续访问、让同样的数据被短时间内访问。
 
@@ -340,13 +340,13 @@ Bandwidth = bytes in word / word access cycle = (4 * 8) / (send address + access
 
 - 更宽的主内存
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233524674.png" alt="image-20230401233524674" style="zoom:40%;" />
+    <img src="assets/image-20230401233524674.png" alt="image-20230401233524674" style="zoom:40%;" />
 
     可以并行地同时从多个bus中取数据，这样取多个word的时候，可以并行取，线性提高带宽。
 
 - 交错内存
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233536043.png" alt="image-20230401233536043" style="zoom:40%;" />
+    <img src="assets/image-20230401233536043.png" alt="image-20230401233536043" style="zoom:40%;" />
 
     
 
@@ -366,7 +366,7 @@ CPU中经常需要进行分支，分支结果分为两种，跳转（1）、不�
 
 2bit预测器就有了00、01、10、11四种状态，涉及到状态转化图，主要有两种。
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233546693.png" alt="image-20230401233546693" style="zoom:40%;" />
+<img src="assets/image-20230401233546693.png" alt="image-20230401233546693" style="zoom:40%;" />
 
 
 
@@ -390,7 +390,7 @@ CPU中经常需要进行分支，分支结果分为两种，跳转（1）、不�
 
 在宽流水线中，EX阶段可能有很多个时钟，不同类型指令时钟数可能不一样，整个流水线不像标准五级那样整齐。难以在硬件设计上（如流水线寄存器bypass、double pump）来完全解决，必须设计一种灵活的动态方法来调度指令执行。
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233607368.png" alt="image-20230401233607368" style="zoom:40%;" />
+<img src="assets/image-20230401233607368.png" alt="image-20230401233607368" style="zoom:40%;" />
 
 
 
@@ -398,13 +398,13 @@ CPU中经常需要进行分支，分支结果分为两种，跳转（1）、不�
 
 ## 记分板Scoreboard
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233622382.png" alt="image-20230401233622382" style="zoom:40%;" />
+<img src="assets/image-20230401233622382.png" alt="image-20230401233622382" style="zoom:40%;" />
 
 
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233633637.png" alt="image-20230401233633637" style="zoom:50%;" />
+<img src="assets/image-20230401233633637.png" alt="image-20230401233633637" style="zoom:50%;" />
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233647861.png" alt="image-20230401233647861" style="zoom:40%;" />
+<img src="assets/image-20230401233647861.png" alt="image-20230401233647861" style="zoom:40%;" />
 
 记分板维护三张表（如图，其实真正硬件上存在的只有下面两张表，第一张是辅助理解的）
 
@@ -447,13 +447,13 @@ CPU中经常需要进行分支，分支结果分为两种，跳转（1）、不�
 
 **寄存器重命名**是tomasulo算法的核心思想
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233702306.png" alt="image-20230401233702306" style="zoom:40%;" />
+<img src="assets/image-20230401233702306.png" alt="image-20230401233702306" style="zoom:40%;" />
 
 - 保留站 Reservation Station
 
     对于每一种操作（如占用加法器的加、占用乘法器的乘），各开辟一个保留站，有若干行，每一行都会记录类似记分板算法中第二张表的行信息。
 
-​		<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233714595.png" alt="image-20230401233714595" style="zoom:40%;" />
+​		<img src="assets/image-20230401233714595.png" alt="image-20230401233714595" style="zoom:40%;" />
 
 ​	一个重大区别是，用Vj、Vk代替Fj、Fk，记录的不是源寄存器编号，而是源寄存器在取出时候的**值**。当然，也要记录该寄存器是否正在被作为其他指令的目的寄存器，方法是在Qj、Qk中存入写入该源寄存器的指令的对应保留站及其行索引，如果为0代表ready，不需要额外的R值帮助记录。
 
@@ -461,9 +461,9 @@ CPU中经常需要进行分支，分支结果分为两种，跳转（1）、不�
 
 ​	以上讲的是算术运算的保留站，Load指令的保留站较为简单，只有Busy位和Address，Address也是在IS阶段直接读出。在tomasulo算法中，指令的发射条件很宽松（保留站有位置），如果源操作数依赖于之前的写指令（算术或者LD），只要设定相应Q值、V值不设即可，知道依赖的指令EX或WB完毕，将其Q设为0，V写入真正的寄存器值，此时才可以进行EX（记分板上RO条件苛刻，EX无条件）。
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233731103.png" alt="image-20230401233731103" style="zoom:40%;" />
+<img src="assets/image-20230401233731103.png" alt="image-20230401233731103" style="zoom:40%;" />
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233740970.png" alt="image-20230401233740970" style="zoom:40%;" />
+<img src="assets/image-20230401233740970.png" alt="image-20230401233740970" style="zoom:40%;" />
 
 
 
@@ -483,7 +483,7 @@ ROB中记录的数据：目的寄存器及其值(未计算出时无效)、指令
 
 提交过程中，将记录的目标寄存器的值写入寄存器，只能提交ROB头部。
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233755148.png" alt="image-20230401233755148" style="zoom:50%;" />
+<img src="assets/image-20230401233755148.png" alt="image-20230401233755148" style="zoom:50%;" />
 
 
 
@@ -499,7 +499,7 @@ ROB中记录的数据：目的寄存器及其值(未计算出时无效)、指令
 
     N-发射时，每个时钟可能发射0-N条指令，需要进行N(N-1)次比较。
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233810248.png" alt="image-20230401233810248" style="zoom:40%;" />
+    <img src="assets/image-20230401233810248.png" alt="image-20230401233810248" style="zoom:40%;" />
 
     
 
@@ -509,7 +509,7 @@ ROB中记录的数据：目的寄存器及其值(未计算出时无效)、指令
 
     - 是否采用投机（speculation）策略，如果不是，则跳转指令后面的指令需要等待跳转指令的EX结束后才能进入EX阶段。如果采用了投机，后面的指令可以无视跳转直接进入EX，只不过后面需要ROB保证顺序提交。也就是tomasulo with speculation。
 
-        <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233823952.png" alt="image-20230401233823952" style="zoom:40%;" />
+        <img src="assets/image-20230401233823952.png" alt="image-20230401233823952" style="zoom:40%;" />
 
     
 
@@ -527,7 +527,7 @@ ROB中记录的数据：目的寄存器及其值(未计算出时无效)、指令
 
 - Vector Processor
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233835357.png" alt="image-20230401233835357" style="zoom:40%;" />
+    <img src="assets/image-20230401233835357.png" alt="image-20230401233835357" style="zoom:40%;" />
 
     
 
@@ -539,35 +539,35 @@ ROB中记录的数据：目的寄存器及其值(未计算出时无效)、指令
 
 ## 线程并行
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233847202.png" alt="image-20230401233847202" style="zoom:50%;" />
+<img src="assets/image-20230401233847202.png" alt="image-20230401233847202" style="zoom:50%;" />
 
 可以将CPU需要处理的任务划分为若干线程，每个线程拥有独立的PC、**寄存器组**、栈（独立内存空间）。
 
 在流水线中，将不同线程的指令交叉执行，从而完全避免冲突的发生（注意寄存器组、内存空间的互不干扰性）。
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233853985.png" alt="image-20230401233853985" style="zoom:50%;" />
+<img src="assets/image-20230401233853985.png" alt="image-20230401233853985" style="zoom:50%;" />
 
 实际中需要考虑的一个问题是如何安排不同线程指令的顺序。分为固定交错、软件控制交错、硬件调度三种方法。
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233858959.png" alt="image-20230401233858959" style="zoom:40%;" />
+<img src="assets/image-20230401233858959.png" alt="image-20230401233858959" style="zoom:40%;" />
 
 
 
 ## 多处理器
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233908030.png" alt="image-20230401233908030" style="zoom:40%;" />
+<img src="assets/image-20230401233908030.png" alt="image-20230401233908030" style="zoom:40%;" />
 
 SMP：symmetrical multi-processing
 
 UMA：uniform memory access
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233917728.png" alt="image-20230401233917728" style="zoom:50%;" />
+<img src="assets/image-20230401233917728.png" alt="image-20230401233917728" style="zoom:50%;" />
 
 DSM：distributed shared-memory
 
 NUMA：non-uniform memory access
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233924039.png" alt="image-20230401233924039" style="zoom:50%;" />
+<img src="assets/image-20230401233924039.png" alt="image-20230401233924039" style="zoom:50%;" />
 
 
 
@@ -583,7 +583,7 @@ write back中，除了直写的问题，还有一个问题是如果写数据没�
 
     适用于SMP，写的时候会在总线上进行广播broadcast。分为三种协议：写无效、写广播、写串行。其中写广播是SMP中的直写，同时广播给其他cache更新值。写串行不重要。重点研究写无效write invalidate protocol
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233933031.png" alt="image-20230401233933031" style="zoom:40%;" />
+    <img src="assets/image-20230401233933031.png" alt="image-20230401233933031" style="zoom:40%;" />
 
 
 
@@ -619,13 +619,13 @@ Exclusive：数据有效，为最新值，尚未写回disk
 
     这三者不一定是分开的，同一个节点可能同时是两个或三个node类型。
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233942649.png" alt="image-20230401233942649" style="zoom:40%;" />
+    <img src="assets/image-20230401233942649.png" alt="image-20230401233942649" style="zoom:40%;" />
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401233954072.png" alt="image-20230401233954072" style="zoom:40%;" />
+    <img src="assets/image-20230401233954072.png" alt="image-20230401233954072" style="zoom:40%;" />
 
     P代表节点编号，A请求的地址。
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401234007850.png" alt="image-20230401234007850" style="zoom:40%;" />
+    <img src="assets/image-20230401234007850.png" alt="image-20230401234007850" style="zoom:40%;" />
 
     目录的一行中记录是依次是：
 
@@ -645,13 +645,13 @@ Exclusive：数据有效，为最新值，尚未写回disk
 
 ## 数据同步
 
- <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401234017794.png" alt="image-20230401234017794" style="zoom:40%;" />
+ <img src="assets/image-20230401234017794.png" alt="image-20230401234017794" style="zoom:40%;" />
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401234038002.png" alt="image-20230401234038002" style="zoom:40%;" />
+<img src="assets/image-20230401234038002.png" alt="image-20230401234038002" style="zoom:40%;" />
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401234106305.png" alt="image-20230401234106305" style="zoom:50%;" />
+<img src="assets/image-20230401234106305.png" alt="image-20230401234106305" style="zoom:50%;" />
 
-<img src="/Users/jerryliterm/Database/Notes/assets/image-20230401234111577.png" alt="image-20230401234111577" style="zoom:40%;" />
+<img src="assets/image-20230401234111577.png" alt="image-20230401234111577" style="zoom:40%;" />
 
 
 

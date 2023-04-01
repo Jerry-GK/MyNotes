@@ -232,7 +232,7 @@
 
     如果一个类含有virtual声明的虚函数，那么它的类内存结构的第一项是一个指针**vptr**，称为**虚表指针，指向的是虚函数表的首地址**。虚函数表是该类产生的一个配套数据结构，里面存有的是其虚函数的函数指针（可能采用的哈希表的结构）。
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232443390.png" alt="image-20230401232443390" style="zoom:50%;" />
+    <img src="assets/image-20230401232443390.png" alt="image-20230401232443390" style="zoom:50%;" />
 
     
 
@@ -485,7 +485,7 @@
 
     deque，即双端队列，是另一大顺序容器，stack、queue都可以基于deque实现。
 
-    <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232500954.png" alt="image-20230401232500954" style="zoom:50%;" />
+    <img src="assets/image-20230401232500954.png" alt="image-20230401232500954" style="zoom:50%;" />
 
     中控器，即指针数组的存在，可以使得扩容时直接增加一个指针、指向新开辟的区域即可。代价了是多了一些指针操作，访问略慢（但也没慢多少）。相比于链表，随机访问速度明显快（无需线性访问，可以直接计算定位）。
 
@@ -546,7 +546,7 @@
 
         - shared_ptr重载赋值：p2 = p1；分为两种情况
 
-            <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232509050.png" alt="image-20230401232509050" style="zoom:50%;" />
+            <img src="assets/image-20230401232509050.png" alt="image-20230401232509050" style="zoom:50%;" />
 
             - 情况1：p1和p2指向的是相同的数据（即内部指针相同，甚至干脆是自赋值），此时不需要任何操作，注意此时不需要更改引用计数，因为p1和p2本来就指向的是相同数据！
             - **情况2**：p1和p2所指的数据不同，此时需要依次进行以下操作
@@ -637,14 +637,14 @@
 
             类之间可能存在循环引用的情况，即互相拥有对方的指针，这种情况可能发生在不同类之间（不推荐这种写法），也可能发生在同一个类之间（最典型的就是双向链表的节点类）。
 
-            <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232520454.png" alt="image-20230401232520454" style="zoom:50%;" />
+            <img src="assets/image-20230401232520454.png" alt="image-20230401232520454" style="zoom:50%;" />
 
             循环引用导致的问题是：**可能导致对象存在内部相互指向、外部无人指向的“孤立”情况**，导致无法释放空间。
 
     - weak_ptr：weak_ptr 是一种不控制对象生命周期的智能指针, 它指向一个shared_ptr管理的对象. 进行该对象的内存管理的是那个强引用的 shared_ptr. weak_ptr只是提供了对管理对象的一个访问手段。
         weak_ptr设计的目的是为配合 shared_ptr而引入的一种智能指针来协助 shared_ptr 工作, 它只可以从一个 shared_ptr或另一个 weak_ptr对象构造, 它的构造和析构不会引起引用记数的增加或减少。weak_ptr是用来解决shared_ptr相互引用时的死锁问题,如果说两个shared_ptr相互引用,那么这两个指针的引用计数永远不可能下降为0,资源永远不会释放。它是对对象的一种弱引用，不会增加对象的引用计数，和shared_ptr之间可以相互转化，shared_ptr可以直接赋值给它，它可以通过调用lock函数来获得shared_ptr。
 
-        <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232526401.png" alt="image-20230401232526401" style="zoom:50%;" />
+        <img src="assets/image-20230401232526401.png" alt="image-20230401232526401" style="zoom:50%;" />
 
 ### 右值引用
 

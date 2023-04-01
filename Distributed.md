@@ -26,7 +26,7 @@
 
     - 整体
 
-        <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232414038.png" alt="image-20230401232414038" style="zoom:50%;" />
+        <img src="assets/image-20230401232414038.png" alt="image-20230401232414038" style="zoom:50%;" />
 
         分布式系统的特点是存在若干个主机组成的集群，有着各自独立的存储和处理器。用户程序在编程时可以不知道这些细节，但运行时需要按某种规则分配给不同主机特定的任务，完成最终计算。这些可以参与工作的主机称为worker，worker里面有一个特殊的主机称为master，负责给普通worker分配任务、进行一些全局管理工作，worker则是具体执行任务的主机。存储输入数据的磁盘也是分布式的，它们可以是附属在主机上、一对一的，也可以是独立的、由系统负责分配输入。
 
@@ -41,7 +41,7 @@
 
         理论上来讲Reduce任务的工作有整体统计的性质，因此需要所有Map任务全部做完、生成完所有中间结果后才能进行，也就是整个系统整体也会分为Map和Reduce两个阶段。实际中可能有优化方法使得能同时进行？
 
-        <img src="/Users/jerryliterm/Database/Notes/assets/image-20230401232421318.png" alt="image-20230401232421318" style="zoom:40%;" />
+        <img src="assets/image-20230401232421318.png" alt="image-20230401232421318" style="zoom:40%;" />
 
         如图，是给定若干个文件，统计各个单词出现的次数，是最简单的mapreduce样例。
 

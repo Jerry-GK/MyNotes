@@ -2,7 +2,7 @@
 
 JerryG
 
-![DBMS思维导图](/Users/jerryliterm/Database/notes/assets/DBMS思维导图.png)
+![DBMS思维导图](assets/DBMS思维导图.png)
 
 ## < 关系型数据库理论模型 Theoretical Model of Relational Database >
 
@@ -10,7 +10,7 @@ JerryG
 
 关系模型(Relation model)是一种数据存储的逻辑模型。一个关系型数据库由若干个关系（relation）组成，每个关系由一个表（table）表示。关系表有行和列，每一列对应的是一个属性（attribute），每一行对应一个实体（entity）。关系表可以记录现实事物信息。从数学角度来讲，关系表是属性集的笛卡尔积的子集。
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230057522.png" alt="image-20230401230057522" style="zoom:50%;" />
+<img src="assets/image-20230401230057522.png" alt="image-20230401230057522" style="zoom:50%;" />
 
 其中属性列表决定了表的架构（schema，可能还包含一些属性约束），而一个包含了若干个实体的具体的表则确定了一个instance。
 
@@ -18,7 +18,7 @@ JerryG
 
 关系代数是一套定义在关系表上的二元运算（操作数、运算结果均为关系表）。基本的元操作有六种：
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230113762.png" alt="image-20230401230113762" style="zoom:40%;" />
+<img src="assets/image-20230401230113762.png" alt="image-20230401230113762" style="zoom:40%;" />
 
 关系代数是SQL查询的理论基础，熟悉它可以帮我们写出准确的SQL查询语句，也有助于查询优化分析。
 
@@ -26,17 +26,17 @@ JerryG
 
 此外，还有一些衍生的运算：
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230144363.png" alt="image-20230401230144363" style="zoom:50%;" />
+<img src="assets/image-20230401230144363.png" alt="image-20230401230144363" style="zoom:50%;" />
 
 其中自然连接比较重要
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230150597.png" alt="image-20230401230150597" style="zoom:50%;" />
+<img src="assets/image-20230401230150597.png" alt="image-20230401230150597" style="zoom:50%;" />
 
 两个表进行笛卡尔积，并且要求共同的属性的值必须相同。自然连接对应的其实就是关系表的合并操作，是关系型数据库的重要特征。
 
 此娃，还有聚合函数（Aggregate Function）
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230157894.png" alt="image-20230401230157894" style="zoom:50%;" />
+<img src="assets/image-20230401230157894.png" alt="image-20230401230157894" style="zoom:50%;" />
 
 聚合函数生成的表有新的属性，属性值由聚合函数产生，聚合函数一般用到原表整个表的信息。
 
@@ -46,7 +46,7 @@ JerryG
 
 - 属性的类型
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230205800.png" alt="image-20230401230205800" style="zoom:50%;" />
+    <img src="assets/image-20230401230205800.png" alt="image-20230401230205800" style="zoom:50%;" />
 
 - 键/码：Key
 
@@ -113,7 +113,7 @@ JerryG
 
 尽管存特殊场景下小型数据库可以将数据存储在内存中，大多数数据库都需要持久、非易失的存储，需要将数据存储在磁盘（disk）中。
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230227923.png" alt="image-20230401230227923" style="zoom:50%;" />
+<img src="assets/image-20230401230227923.png" alt="image-20230401230227923" style="zoom:50%;" />
 
 磁盘现在含义比较广，可以泛指非易失的存储部件。以前多用磁带实现，现在SSD开始流行。在数据库运行时，需要将磁盘中的数据载入内存再进行操作，这里就涉及到了不少优化。
 
@@ -140,7 +140,7 @@ JerryG
 
 多磁盘的并行技术：
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230237723.png" alt="image-20230401230237723" style="zoom:40%;" />
+<img src="assets/image-20230401230237723.png" alt="image-20230401230237723" style="zoom:40%;" />
 
 考虑有多个磁盘的情况，不同磁盘可以独立、并行地读写。那么为了提高读写效率，可以将统一块数据拆分成多个写入多个磁盘的对应位置，这样可以实现读写的并行。
 
@@ -169,7 +169,7 @@ RAID5的纠错块分布在各个数据磁盘中，没有专门的纠错磁盘，
 
 Block writes occur in parallel if the blocks and their parity blocks are on different disks. 
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230249304.png" alt="image-20230401230249304" style="zoom:50%;" />
+<img src="assets/image-20230401230249304.png" alt="image-20230401230249304" style="zoom:50%;" />
 
 RAID6: 又称P+Q冗余策略。类似RAID5，但是加了额外的冗余信息防止多个盘出错。可以纠正两个盘同时出错的情况。
 
@@ -179,7 +179,7 @@ RAID6: 又称P+Q冗余策略。类似RAID5，但是加了额外的冗余信息�
 
 ### Buffer Pool
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230302744.png" alt="image-20230401230302744" style="zoom:50%;" />
+<img src="assets/image-20230401230302744.png" alt="image-20230401230302744" style="zoom:50%;" />
 
 - 基本概念
 
@@ -197,7 +197,7 @@ RAID6: 又称P+Q冗余策略。类似RAID5，但是加了额外的冗余信息�
 
     此外还有clock替换策略。LRU策略需要每个page有个最近访问的时间戳，clock算法则不需要。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230319832.png" alt="image-20230401230319832" style="zoom:50%;" />
+    <img src="assets/image-20230401230319832.png" alt="image-20230401230319832" style="zoom:50%;" />
 
 - 多线程/分布式buffer pool
 
@@ -239,11 +239,11 @@ RAID6: 又称P+Q冗余策略。类似RAID5，但是加了额外的冗余信息�
 
             最简单的模式是链表结构，每个页存有逻辑上上/下一页的指针(即页号，注意这里链表的概念是在磁盘中的)。注意这个模式需要一个额外的header page，分别存着数据页链表和空闲页链表的首页指针。注意是两个链表。
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230332943.png" alt="image-20230401230332943" style="zoom:30%;" />
+            <img src="assets/image-20230401230332943.png" alt="image-20230401230332943" style="zoom:30%;" />
 
         - 目录结构
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230343270.png" alt="image-20230401230343270" style="zoom:50%;" />
+            <img src="assets/image-20230401230343270.png" alt="image-20230401230343270" style="zoom:50%;" />
 
             系统维护目录页，目录页由若干个entry组成，每个entry是固定大小的，记录页号和对应页剩余空间的大小。由于页可能非常多，一个目录的entry可能不足以对应所有页，因此目录页需要多个，也以链表的形式连接。
 
@@ -265,17 +265,17 @@ RAID6: 又称P+Q冗余策略。类似RAID5，但是加了额外的冗余信息�
 
             可以按类似数组的结构存储，较为简单。
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230350689.png" alt="image-20230401230350689" style="zoom:50%;" />
+            <img src="assets/image-20230401230350689.png" alt="image-20230401230350689" style="zoom:50%;" />
 
             实际上除了特定结构的表，记录多数情况下不定长，这种结构可能会浪费空间。
 
         - **slotted-page分槽页**(不定长记录)
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230357274.png" alt="image-20230401230357274" style="zoom:40%;" />
+            <img src="assets/image-20230401230357274.png" alt="image-20230401230357274" style="zoom:40%;" />
 
             在一个表页中，不定长的tuple从后往前连续存储，而页首部先是头部信息，然后是slot array。头部信息是定长的，包含页的基本信息、tuple数量、剩余空间大小等。slot array从header末尾开始，随着tuple增加从前往后生成，第一个slot对应位于末尾的第一个tuple，如图以此类推。每一个slot是定长的，记录其对应的tuple的偏移(tuple头部在页中的位置)。最后一个slot对应最后一个tuple(页中最前的tuple)，这之间是free space(蓝色的部分)。
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230413463.png" alt="image-20230401230413463" style="zoom:50%;" />
+            <img src="assets/image-20230401230413463.png" alt="image-20230401230413463" style="zoom:50%;" />
 
             插入tuple时，先在header检查剩余空间字段是否足够大(要满足slot+tuple的空间大小)，如果可以插入，则分别在前、后插入slot和tuple，slot的偏移根据最后一个tuple的偏移和新tuple的大小确定。如果空间不足，则检查下一个页看能否插入(可以设计诸如堆堆数据结构确保先插入到剩余空间最大的页中)。
 
@@ -338,13 +338,13 @@ RAID6: 又称P+Q冗余策略。类似RAID5，但是加了额外的冗余信息�
   
 - 多级索引Multilevel Index
 
-  ​	<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230422846.png" alt="image-20230401230422846" style="zoom:30%;" />
+  ​	<img src="assets/image-20230401230422846.png" alt="image-20230401230422846" style="zoom:30%;" />
   
   把内层索引文件看作顺序数据文件一样，在其上建立外层的稀疏索引。外层索引也就是索引的索引。
   
 - 聚集(cluster)索引和非聚集索引
 
-  <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230432789.png" alt="image-20230401230432789" style="zoom:40%;" />
+  <img src="assets/image-20230401230432789.png" alt="image-20230401230432789" style="zoom:40%;" />
   
   在数据库的索引里面，可以建立一种特殊的索引，叫主索引（primary index）。即主键上的索引，主键可以看作行的逻辑标识符，不允许重复、不允许修改，与tuple一一绑定。一般的数据库都会建议或默认生成主索引。其他的索引又称辅助索引(secondary index)，即其他键上的索引，这种索引可能设计键值的修改、键值可能重复。
   
@@ -382,7 +382,7 @@ B+树是一种树形数据结构。一个n-B+树有以下特点
 - 根节点如果不是叶节点，则至少有两个孩子。如果根节点就是叶节点，它可以含有0到n-1个键值。
 - 只有叶节点内部的指针才指向真正的数据(数据库中表现为数据表的tuple位置)。
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230451198.png" alt="image-20230401230451198" style="zoom:50%;" />
+<img src="assets/image-20230401230451198.png" alt="image-20230401230451198" style="zoom:50%;" />
 
 
 
@@ -419,7 +419,7 @@ B+树是一种树形数据结构。一个n-B+树有以下特点
 
     对于键值允许重复的情况，每个entry不直接存数据值，而是存一个指向数据值链表的指针。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230500472.png" alt="image-20230401230500472" style="zoom:50%;" />
+    <img src="assets/image-20230401230500472.png" alt="image-20230401230500472" style="zoom:50%;" />
 
 - 碰撞/冲突处理策略（静态）
 
@@ -457,7 +457,7 @@ B+树是一种树形数据结构。一个n-B+树有以下特点
 
     - **Chained Hashing(开链法)**
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230513145.png" alt="image-20230401230513145" style="zoom:50%;" />
+        <img src="assets/image-20230401230513145.png" alt="image-20230401230513145" style="zoom:50%;" />
 
         此时哈希表的“大小”其实也是固定的，只不过entry里存的不是键值和数据值，而是指向**bucket**的指针。bucket是哈希值相同的“真entry”，真entry存的是键值和数据值(tuple指针)。bucket一般是定长的，若干个定长的bucket通过链表相连接（如图，bucket满、生成新bucket在尾部的过程称为分裂split）。此时查询时只需要扫描检查bucket即可，不需要考虑碰撞问题。
 
@@ -467,7 +467,7 @@ B+树是一种树形数据结构。一个n-B+树有以下特点
 
     - **Linear Hashing(线性哈希)**
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230520421.png" alt="image-20230401230520421" style="zoom:50%;" />
+        <img src="assets/image-20230401230520421.png" alt="image-20230401230520421" style="zoom:50%;" />
 
         为了防止bucket链表过长，在哈希表上维护了下一个分裂的bucket的指针。bucket分裂时，被该指针指向。给定键值，通过多哈希找到正确的bucket，低层hash找不到用高层hash找。
 
@@ -477,7 +477,7 @@ B+树是一种树形数据结构。一个n-B+树有以下特点
 
         这是一个非常精妙的数据结构，可以在实现哈希表的动态扩展的同时，不需要rehash、空间利用率高、查询性能稳定优秀。
         
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230527249.png" alt="image-20230401230527249" style="zoom:50%;" />
+        <img src="assets/image-20230401230527249.png" alt="image-20230401230527249" style="zoom:50%;" />
         
         （该图中哈希函数不是mod取余，而是取前若干位）
         
@@ -514,7 +514,7 @@ B+树是一种树形数据结构。一个n-B+树有以下特点
 
 ### LSM索引
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230535579.png" alt="image-20230401230535579" style="zoom:50%;" />
+<img src="assets/image-20230401230535579.png" alt="image-20230401230535579" style="zoom:50%;" />
 
 Log Structured Merge日志结构合并树是一种近些年新兴的索引结构，用的越来越多不能忽视。以merge为主要操作，分层多层树。是一种牺牲部分读性能来获取高写性能的索引，适合于写多余读、大规模写入的情况。
 
@@ -546,7 +546,7 @@ Log Structured Merge日志结构合并树是一种近些年新兴的索引结构
 
 - 另一种方案Buffer Tree
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230546071.png" alt="image-20230401230546071" style="zoom:50%;" />
+    <img src="assets/image-20230401230546071.png" alt="image-20230401230546071" style="zoom:50%;" />
 
     树的节点上有插入内容的缓冲区，在合适时间真正执行插入。
 
@@ -556,7 +556,7 @@ Log Structured Merge日志结构合并树是一种近些年新兴的索引结构
 
 bitmap索引是一种较为特殊的索引，有特殊的适用场景：键值的取值可能非常有限（较少、固定的可能取值），比如性别、班级、等级这类属性。
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230551981.png" alt="image-20230401230551981" style="zoom:50%;" />
+<img src="assets/image-20230401230551981.png" alt="image-20230401230551981" style="zoom:50%;" />
 
 具体方法是：维护若干个比特串，每一行比特串代表的是一个属性取值的分配情况，比特串长度是表中记录的数量。
 
@@ -576,15 +576,15 @@ bitmap索引是一种较为特殊的索引，有特殊的适用场景：键值�
 
     - Blocking OS Mutex
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230601081.png" alt="image-20230401230601081" style="zoom:50%;" />
+        <img src="assets/image-20230401230601081.png" alt="image-20230401230601081" style="zoom:50%;" />
 
     - Test-and-Set Spin Latch
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230606727.png" alt="image-20230401230606727" style="zoom:50%;" />
+        <img src="assets/image-20230401230606727.png" alt="image-20230401230606727" style="zoom:50%;" />
 
     - Reader-Writer Latch
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230611427.png" alt="image-20230401230611427" style="zoom:50%;" />
+        <img src="assets/image-20230401230611427.png" alt="image-20230401230611427" style="zoom:50%;" />
 
 - **哈希表的latch**方法有两种
     - Page Latch：粒度是页，每个页有自己的读写锁，保护整个页的内容。线程修改数据时，需要对整个页进行上锁。
@@ -621,7 +621,7 @@ bitmap索引是一种较为特殊的索引，有特殊的适用场景：键值�
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401230622629.png" alt="image-20230401230622629" style="zoom:40%;" />
+<img src="assets/image-20230401230622629.png" alt="image-20230401230622629" style="zoom:40%;" />
 
 **`SQL` ->语法解析(parser) -> `语法树` -> 绑定器(binder) -> `逻辑计划树` -> 查询计划优化(optimizer) -> `物理计划树` -> 查询执行(executor) -> `真正操作数据库`**
 
@@ -656,7 +656,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         将逻辑计划树转化为结果上等价、过程上更优的计划树。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230637490.png" alt="image-20230401230637490" style="zoom:50%;" />
+        <img src="assets/image-20230401230637490.png" alt="image-20230401230637490" style="zoom:50%;" />
 
         - 拆分合取谓词 split conjunctive predicate
 
@@ -723,13 +723,13 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
             对于复杂条件筛选算子，可以根据条件类型、按照逻辑估计结果集大小。
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230645778.png" alt="image-20230401230645778" style="zoom:50%;" />
+            <img src="assets/image-20230401230645778.png" alt="image-20230401230645778" style="zoom:50%;" />
 
             SC总是假设近似平均分布，如果想要更精细的估计，可以采用以下两种方法
 
             - 直方图Histogram
 
-                <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230651291.png" alt="image-20230401230651291" style="zoom:50%;" />
+                <img src="assets/image-20230401230651291.png" alt="image-20230401230651291" style="zoom:50%;" />
 
                 维护直方图信息，尤其适合帮助实现范围条件的估计。依然假设了同一个bucket内近似均匀分布。
 
@@ -741,7 +741,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
             估计多个表之间进行连接join之后的结果行数。
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230704324.png" alt="image-20230401230704324" style="zoom:50%;" />
+            <img src="assets/image-20230401230704324.png" alt="image-20230401230704324" style="zoom:50%;" />
 
             
 
@@ -757,7 +757,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         - 选择join顺序
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230717402.png" alt="image-20230401230717402" style="zoom:50%;" />
+            <img src="assets/image-20230401230717402.png" alt="image-20230401230717402" style="zoom:50%;" />
 
             首先排除需要笛卡尔积的情况，然后根据表的(估计)大小信息，选择估计成本最低的方式。一般的原则是：小表尽量作为左表，避免大表之间的连接。
 
@@ -773,7 +773,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         每一步的选择都会影响候选join计划的成本估计值，最终选择成本估计最小的join方式。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230725734.png" alt="image-20230401230725734" style="zoom:50%;" />
+        <img src="assets/image-20230401230725734.png" alt="image-20230401230725734" style="zoom:50%;" />
 
         
 
@@ -813,7 +813,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
     M：内存中能存放的最大数据量。M = B * (n / N)。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230756574.png" alt="image-20230401230756574" style="zoom:50%;" />
+    <img src="assets/image-20230401230756574.png" alt="image-20230401230756574" style="zoom:50%;" />
 
     流程示意图如上。首先，我们先不关注内存的大小和分配问题，只观察每一轮磁盘的内容变化：
 
@@ -831,7 +831,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
     - 如何借助内存实现k-way merge？k的大小如何选择？
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230803980.png" alt="image-20230401230803980" style="zoom:45%;" />
+        <img src="assets/image-20230401230803980.png" alt="image-20230401230803980" style="zoom:45%;" />
 
         这是外部归并排序的关键所在。merge阶段，需要对k个set，merge成一块有序数据。方法是用**优先队列(堆)**：以从大到小排序为例，维护一个大小为k的最大堆。每个set有一个读指针，堆中的内容就是这k个读指针所指的数据，初始化后，每次需要将堆顶顶元素pop出去作为输出，并把这个被移除的最大元素对应的read cursor向下移动，读取该set中的下一个数据加入heap。这样可以利用每个set的有序性达到输出总体有序的结果。 有几点需要注意：
 
@@ -842,7 +842,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         如图，外部排序主要考虑的点不是时间复杂度，而是IO的次数。每一次pass意味着需要将每个page都搬入内存中，然后经处理后再输出到disk中，所以2N*passes就是IO消耗。由此可见影响性能的主要是内存的大小。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230824909.png" alt="image-20230401230824909" style="zoom:50%;" />
+        <img src="assets/image-20230401230824909.png" alt="image-20230401230824909" style="zoom:50%;" />
 
     - 外部归并排序如何**并行化**？
 
@@ -868,7 +868,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
     - **External Hashing** Aggregate外部哈希聚合
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230832174.png" alt="image-20230401230832174" style="zoom:50%;" />
+        <img src="assets/image-20230401230832174.png" alt="image-20230401230832174" style="zoom:50%;" />
 
         外部哈希分为两阶段：
 
@@ -889,7 +889,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         （图中例子是对cid取DISTINCT，cid是聚合属性）
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230859140.png" alt="image-20230401230859140" style="zoom:30%;" />
+        <img src="assets/image-20230401230859140.png" alt="image-20230401230859140" style="zoom:30%;" />
 
         
 
@@ -897,7 +897,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         MSG问题：如果是想按key的聚合输出所有记录，那么MSG需要记录tupleID，在ReHash阶段生成的哈希表中可以是<Key, Key对应的所有tupleID>。如果是为了筛选DISTINCT，那么不需要MSG。如果为了计算**聚合统计函 数**，那么可以MSG可以是RunningVAL，即与统计有关的数值，此值在key第一次出现时初始化，再出现时进行诸如累加的统计计算。如图举例：
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230922863.png" alt="image-20230401230922863" style="zoom:40%;" />
+        <img src="assets/image-20230401230922863.png" alt="image-20230401230922863" style="zoom:40%;" />
 
         
 
@@ -935,7 +935,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
     - Stupid(**Tuple**) nested loop join
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230935219.png" alt="image-20230401230935219" style="zoom:50%;" />
+        <img src="assets/image-20230401230935219.png" alt="image-20230401230935219" style="zoom:50%;" />
 
         **Time cost: mn;	I/O cost: M + (m*N)** （假设内存不足。可以看出小表作为左表可以减少I/O cost）
 
@@ -943,7 +943,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         以block/page为单位进行循环，block内部可以在内存中循环遍历记录，可以减少block的IO次数。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230943261.png" alt="image-20230401230943261" style="zoom:50%;" />
+        <img src="assets/image-20230401230943261.png" alt="image-20230401230943261" style="zoom:50%;" />
 
         此时假定内存中只有B个block的buffer，B-2个给outer table，一个给inner table，最后一个给output。
 
@@ -955,7 +955,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         如果**inner table上建有连接属性上的索引**，那么可以用索引极大的加快内层循环。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230949983.png" alt="image-20230401230949983" style="zoom:50%;" />
+        <img src="assets/image-20230401230949983.png" alt="image-20230401230949983" style="zoom:50%;" />
 
         **Time cost: m*Index(n);	I/O cost: M + m * C ** 
 
@@ -975,7 +975,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
     - Phase2：Merge
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401230956823.png" alt="image-20230401230956823" style="zoom:40%;" />
+        <img src="assets/image-20230401230956823.png" alt="image-20230401230956823" style="zoom:40%;" />
 
         采用**双指针法**。两个**排序后的**表分别维护一个指针指向当前读的记录，按如上经典方法可以统计合并出所有匹配的记录。merge的时间复杂度是线性的。对于特殊的join条件可能需要回溯？
 
@@ -983,7 +983,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         **Time cost: mlogm+ nlogn + m + n;	I/O cost: **
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231007680.png" alt="image-20230401231007680" style="zoom:50%;" />
+        <img src="assets/image-20230401231007680.png" alt="image-20230401231007680" style="zoom:50%;" />
 
         大多数情况下，各方面性能都优于任何形式的nested loop join。
 
@@ -999,7 +999,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
     仍然是join key(s)相等的自然连接，可以利用哈希的特性进行连接，这也是非常自然的想法。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231014470.png" alt="image-20230401231014470" style="zoom:40%;" />
+    <img src="assets/image-20230401231014470.png" alt="image-20230401231014470" style="zoom:40%;" />
 
     - Phase1：Build
 
@@ -1019,7 +1019,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         **I/O cost：**
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231039018.png" alt="image-20230401231039018" style="zoom:50%;" />
+        <img src="assets/image-20230401231039018.png" alt="image-20230401231039018" style="zoom:50%;" />
         I/O代价跟哈希表的大小有关，哈希表大小有限制。
 
         
@@ -1042,7 +1042,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         Bloom Filter的实现(非常简单)：
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231046303.png" alt="image-20230401231046303" style="zoom:50%;" />
+        <img src="assets/image-20230401231046303.png" alt="image-20230401231046303" style="zoom:50%;" />
 
         维护一个m-bit的比特数组，另外需要准备k和哈希函数h1～hk。仅此而已。
 
@@ -1064,15 +1064,15 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         在哈希表无法全部载入内存时，按bucket划分哈希会比较好，流程如图，给两个表用相同的哈希函数维护哈希表，其中一个bucket是可以放到内存中进行比较的（但是哈希表整体不行）。
 
-         <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231056922.png" alt="image-20230401231056922" style="zoom:40%;" />
+         <img src="assets/image-20230401231056922.png" alt="image-20230401231056922" style="zoom:40%;" />
 
         如果数据量大到单个bucket也无法放入，则需要recursive hashing，将bucket用新哈希函数再划分。直到bucket能放入内存。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231107976.png" alt="image-20230401231107976" style="zoom:40%;" />
+        <img src="assets/image-20230401231107976.png" alt="image-20230401231107976" style="zoom:40%;" />
 
         Time cost与普通hash join一样。I/O开销：
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231115720.png" alt="image-20230401231115720" style="zoom:50%;" />
+        <img src="assets/image-20230401231115720.png" alt="image-20230401231115720" style="zoom:50%;" />
 
         
 
@@ -1092,7 +1092,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
     operator的Next函数，会在循环里依次调用它的子节点的Next函数，然后得到它们返回的tuple并进行处理。对于关系表，它也有Next函数，只不过是最简单的遍历返回每一个tuple而已。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231125216.png" alt="image-20230401231125216" style="zoom:50%;" />
+    <img src="assets/image-20230401231125216.png" alt="image-20230401231125216" style="zoom:50%;" />
 
     如图体现了常见算子的Next函数形式。
 
@@ -1100,7 +1100,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
     - 优点：每个算子Operator的功能可以单独实现，不必关心其它算子的实现和返回结果。实现上逻辑清晰、简单。可以受益于SIMD。
 - 缺点：每次计算一个tuple，存在大量的递归函数调用，CPU利用率低。
-    
+  
     
 
 - **Materialization Model 物化模型**
@@ -1109,7 +1109,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
     “物化Materialization”这个词的含义是**在内存中生成完整的临时结果表**。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231139286.png" alt="image-20230401231139286" style="zoom:50%;" />
+    <img src="assets/image-20230401231139286.png" alt="image-20230401231139286" style="zoom:50%;" />
 
     - 优点：一次性返回所有结果，不需要频繁调用函数，更自然。
     - 缺点：可能需要耗费巨大内存空间，比如关系表的output函数是返回所有tuple，面对大表时不现实。并发性差。
@@ -1120,7 +1120,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
   是迭代模型和物化模型的折中方法，返回的不是一个tuple，也不是所有tuple，而是一批(batch)tuple，使其即不会太频繁递归调用，又不会导致内存空间不够用、并行度太差。
   
-  <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231146948.png" alt="image-20230401231146948" style="zoom:40%;" />
+  <img src="assets/image-20230401231146948.png" alt="image-20230401231146948" style="zoom:40%;" />
   
   batch的大小可能随着硬件条件、查询特性的不同而有所变化。
 
@@ -1130,7 +1130,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
 - **Sequential Scan顺序扫描**
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231203458.png" alt="image-20230401231203458" style="zoom:50%;" />
+    <img src="assets/image-20230401231203458.png" alt="image-20230401231203458" style="zoom:50%;" />
 
     最简单的策略，遍历表中每个page的每个slot。虽然笨，但是在某些情况，比如没有索引帮助时只能如此。
 
@@ -1144,7 +1144,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         - **Zone Maps**（无损）：事先对一页上的数据进行一些统计信息的记录，查询时如果根据统计信息能够排除可能，直接跳过这一页。这样就不必访问每一页的所有数据了。体现了过滤思想。如下图，发现MAX是400，所以当where是大于600时，将跳过这一整页的tuple。另外zone map可能也能加快某些聚合函数的计算速度。
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231209452.png" alt="image-20230401231209452" style="zoom:50%;" />
+            <img src="assets/image-20230401231209452.png" alt="image-20230401231209452" style="zoom:50%;" />
 
 - **Inex Scan索引扫描**
 
@@ -1160,7 +1160,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
         如果是AND条件，那么有两种做法。一种是任选一个条件对应的索引，在索引上得到符合条件的tuple，然后顺序扫描检查这些tuple符不符合第二个条件，也就是没用到另一个条件的索引；另一种方法是分别用两个索引得到符合其条件的结果，然后对tupleID作交集，这种方法可以利用bitmap等方式减少顺序扫描，如图所示。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231215670.png" alt="image-20230401231215670" style="zoom:50%;" />
+        <img src="assets/image-20230401231215670.png" alt="image-20230401231215670" style="zoom:50%;" />
 
 ### 查询执行-Modification Queries
 
@@ -1174,7 +1174,7 @@ SQL是声明型语言declarative language，结果语义分析逻辑计划树，
 
 ### 查询执行-Parallel Execution
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401231224220.png" alt="image-20230401231224220" style="zoom:50%;" />
+<img src="assets/image-20230401231224220.png" alt="image-20230401231224220" style="zoom:50%;" />
 
 并行执行是DBMS非常重要的加速执行、增大throughput、减少latency的方法。这里进行一下概念区分。
 
@@ -1191,13 +1191,13 @@ Worker的实现模型有如下三种
 
     每个Worker由一个OS进程管控。Postgress采取这种方法。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231243427.png" alt="image-20230401231243427" style="zoom:50%;" />
+    <img src="assets/image-20230401231243427.png" alt="image-20230401231243427" style="zoom:50%;" />
 
 - Thread per Worker
 
     Worker由线程管控，更轻量级、cache友好。多数数据库如mysql、oracle、sqlsever都采取这种方法。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231324017.png" alt="image-20230401231324017" style="zoom:50%;" />
+    <img src="assets/image-20230401231324017.png" alt="image-20230401231324017" style="zoom:50%;" />
 
 - Embedded DBMS
 
@@ -1205,7 +1205,7 @@ Worker的实现模型有如下三种
 
     嵌入式DBMS通常被用于需要本地数据存储和管理的应用程序，例如桌面应用程序、移动应用程序和嵌入式系统等等。它们通常具有小巧、快速、可靠、易于集成和管理等特点，因为它们不需要网络通信和复杂的管理架构。一些流行的嵌入式DBMS包括SQLite、HSQLDB、Berkeley DB等等。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231328903.png" alt="image-20230401231328903" style="zoom:50%;" />
+    <img src="assets/image-20230401231328903.png" alt="image-20230401231328903" style="zoom:50%;" />
 
 并行层次有SQL并行、I/O并行，SQL并行又分为Inter-Query和Intra-Query。
 
@@ -1221,11 +1221,11 @@ Worker的实现模型有如下三种
 
         将**同一算子分解**成多个独立的“片段(fragement)”，每个片段对**数据的一个子集**进行相同的功能函数，即该算子的操作。DBMS通过exchange类型的算子来收集/分裂不同算子片段的结果。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231334736.png" alt="image-20230401231334736" style="zoom:50%;" />
+        <img src="assets/image-20230401231334736.png" alt="image-20230401231334736" style="zoom:50%;" />
 
         如图，底层是数据，被分为若干个数据子集，A1~A3是三个fragement，都执行系统的算子。最后结果由Exchange算子处理。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231340789.png" alt="image-20230401231340789" style="zoom:50%;" />
+        <img src="assets/image-20230401231340789.png" alt="image-20230401231340789" style="zoom:50%;" />
 
         如图，Exchange算子由三种，聚合、分散、重新分配。
 
@@ -1239,11 +1239,11 @@ Worker的实现模型有如下三种
 
         - 含义2：**流水线式并行**，pipeline parallelism。对于有顺序依赖的算子，一般是连续进行的算子，算子1需要算子2的结果，不需要算子2完全得到结果再交给算子1，而是算子1接收到任何可以计算的中间结果后马上运行可以计算的部分，算子2同时执行，两者执行方式类似流水线。（没太搞懂跟迭代模型的区别联系）
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231348258.png" alt="image-20230401231348258" style="zoom:40%;" />
+            <img src="assets/image-20230401231348258.png" alt="image-20230401231348258" style="zoom:40%;" />
 
     - **Bushy**：两种方法的结合，不同算子间也有并行，同一算子也对数据集进行拆分并行计算。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231400403.png" alt="image-20230401231400403" style="zoom:50%;" />
+        <img src="assets/image-20230401231400403.png" alt="image-20230401231400403" style="zoom:50%;" />
 
 - **I/O并行**
 
@@ -1257,7 +1257,7 @@ Worker的实现模型有如下三种
 
         注意这是OS或者硬件实现的，DBMS通过系统调用搬入磁盘页本身就可能是并行执行了的，不需要自行控制。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231406235.png" alt="image-20230401231406235" style="zoom:50%;" />
+        <img src="assets/image-20230401231406235.png" alt="image-20230401231406235" style="zoom:50%;" />
 
     - **Database-Partitionin数据库划分**
 
@@ -1265,13 +1265,13 @@ Worker的实现模型有如下三种
 
         - **Vertical Partitioning垂直划分**：同一表的**不同列**可能在不同文件。
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231412756.png" alt="image-20230401231412756" style="zoom:50%;" />
+            <img src="assets/image-20230401231412756.png" alt="image-20230401231412756" style="zoom:50%;" />
 
             多个列的查询可以进行并行I/O。适合查询少部分几列的情况。注意这跟列存有一定区别。
 
         - **Horizontical Partitioning水平划分**：同一表的**不同行**可能在不同文件
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231417419.png" alt="image-20230401231417419" style="zoom:50%;" />
+            <img src="assets/image-20230401231417419.png" alt="image-20230401231417419" style="zoom:50%;" />
 
             可以按照随机/哈希值/范围/谓词进行行划分。
 
@@ -1304,7 +1304,7 @@ Worker的实现模型有如下三种
 
 事务状态图：
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401231543115.png" alt="image-20230401231543115" style="zoom:50%;" />
+<img src="assets/image-20230401231543115.png" alt="image-20230401231543115" style="zoom:50%;" />
 
 只有commit提交了的事务才算真正执行完。aborted后可以选择重启或放弃事务。
 
@@ -1320,7 +1320,7 @@ Worker的实现模型有如下三种
 
 - 影页法shadow paging：
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231549212.png" alt="image-20230401231549212" style="zoom:50%;" />
+    <img src="assets/image-20230401231549212.png" alt="image-20230401231549212" style="zoom:50%;" />
 
     事务执行时不真正修改数据库内容。当事务想要写数据库的某一页时，创造一份该页的拷贝，写在拷贝页上，只有提交时才将数据页替换成拷贝页。这种方法实际上有重大问题：
 
@@ -1361,17 +1361,17 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
 - 脏读dirty read：事务A修改了X但并未提交，此时事务B读取X，读到是已修改但并未提交的脏数据。**注意读脏数据未必就一定出错，如果A比B先提交了，那么逻辑正确。但如果A比B晚提交，或者A被abort了，那么B就读到了不存在的值。**脏读是WAR导致的。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231600078.png" alt="image-20230401231600078" style="zoom:50%;" />
+    <img src="assets/image-20230401231600078.png" alt="image-20230401231600078" style="zoom:50%;" />
 
 - 不可重复nonrepeatable read：同一个事务A前后两次读取同一数据X，自己中途未写，但被其它事务B改写/删除了(注意第二次读时事务B已经提交，否则应该认为第二次读是脏读)，导致两次读取结果不一致。这种情况B一定比A先提交，**从结果上看A的第一次读(注意不可重复读的问题出在第一次读！)属于RAW冲突**。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231605503.png" alt="image-20230401231605503" style="zoom:50%;" />
+    <img src="assets/image-20230401231605503.png" alt="image-20230401231605503" style="zoom:50%;" />
 
 - 幻读phatom read：同一事务进行多次查询操作，中途存在其他事务插入记录，导致查询结果不一致。其实幻读可以理解为不可重复读的衍生品，只不过“改写”是新增(插入)操作，也就是把原先的空区域改写为记录。从并发控制实现上来讲需要额外实现一些细节才能防止幻读。
 
 - 写未提交Overwriting Uncommitted Data：事务A和B写同一个数据X，**事务B先写后提交，事务A后写先提交**，这就导致AB都提交后，X中是A写的值，而逻辑上先A后B执行，应该是B的值。**写未提交属于典型的WAW冲突**。这个属于比较严重的并发问题，因此一般必须保证后写后提交。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231612046.png" alt="image-20230401231612046" style="zoom:50%;" />
+    <img src="assets/image-20230401231612046.png" alt="image-20230401231612046" style="zoom:50%;" />
 
 正因为有这四种并发问题，数据库才需要多种并发控制技术，产生合理的调度，来防止出现这些问题。注意事务并发问题的解决思路跟流水线的指令并发解决思路不大相同：指令并发要求维护指令间的逻辑顺序，思路是stall流水线或者在别的地方存储临时数据；事务并发只需要关注当前正要执行哪些指令，让它们不要发生冲突即可。
 
@@ -1381,7 +1381,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
 数据库设有隔离级别，只有可串行化才是最高等级的隔离，可以避免一切并发问题。其他的等级实现上相对较松，允许一些并发问题存在，知道读未提交就是完全不顾并发问题的存在。注意**这些隔离级别都保证不会出现写未提交**(因此read uncommited并不是完全不做并发控制，可能加了排他写锁)。
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401231618049.png" alt="image-20230401231618049" style="zoom:40%;" />
+<img src="assets/image-20230401231618049.png" alt="image-20230401231618049" style="zoom:40%;" />
 
 级别越高的隔离等级付出的代价是并行度越低。某些数据库场景下，事务不会导致脏读/不可重复读/幻读，或者即使读到了也无伤大雅，这种情况没必要用高等级隔离级别。
 
@@ -1401,13 +1401,13 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
         视图可串行化某种意义上是真正的“可串行化”。然而，给定一个调度，视图可串行化的判定是NP问题，难以判定，更难以设计一套模式来保证(或者说证明)产生的调度是视图可串行化的。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231626381.png" alt="image-20230401231626381" style="zoom:50%;" />
+        <img src="assets/image-20230401231626381.png" alt="image-20230401231626381" style="zoom:50%;" />
 
     - 冲突可串行化Conflict Serializability
 
         冲突可串行化是视图可串行化的子集，容易判定、容易通过并发控制方法保证/证明。虽然有一些调度是视图可串行化但非冲突可串行化，这些调度也是“好”的，但不会被实现冲突可串行化的系统生成。虽然浪费了一些优秀调度、损失部分性能，但问题得到了较大简化，广为使用。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231635541.png" alt="image-20230401231635541" style="zoom:40%;" />
+        <img src="assets/image-20230401231635541.png" alt="image-20230401231635541" style="zoom:40%;" />
 
         
 
@@ -1417,7 +1417,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
         调度的集合关系图：绝大多数DBMS所说的可串行调度，指的都是产生冲突可串行的调度。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231650786.png" alt="image-20230401231650786" style="zoom:40%;" />
+    <img src="assets/image-20230401231650786.png" alt="image-20230401231650786" style="zoom:40%;" />
 
 - 可恢复性Recoverablity
 
@@ -1425,7 +1425,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
     如果想保证可恢复性，则要求对于一个事务A，它读取的数据被其他事务修改的集合为S，那么必须等到S中的事务全部提交后，A才能提交。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231658559.png" alt="image-20230401231658559" style="zoom:50%;" />
+    <img src="assets/image-20230401231658559.png" alt="image-20230401231658559" style="zoom:50%;" />
     
     之所以称之为“恢复性”，是考虑到上图的场景。此时T10的abort会导致T11的abort，由此可能导致**级联回滚(cascading 非级联的调度一定是可恢复的。
 
@@ -1445,7 +1445,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
         具体而言，锁分为共享锁S-Lock(又称为读锁)和互斥锁X-Lock(又称为写锁)，分别在需要读/写数据的时候加上，互斥关系如图：
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231703424.png" alt="image-20230401231703424" style="zoom:50%;" />
+        <img src="assets/image-20230401231703424.png" alt="image-20230401231703424" style="zoom:50%;" />
 
         只有读锁和读锁之间不互斥，其他都互斥。**事务在尝试读/写数据X时，必须先尝试给X加上读/写锁，如果因为要加的锁跟X上已有的其他事务加的锁互斥，而导致无法加上锁，那么这个读/写操作必须推迟进行，直到互斥的锁都释放掉后，才能继续操作**。
 
@@ -1459,7 +1459,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
         任何事务必须经过growing和shrinking两个阶段，growing阶段尝试获取所有需要的锁，不允许释放锁，第二个阶段开始可以释放其获得的锁，不允许获得锁，直到事务提交(提交前必须释放所有锁)。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231713384.png" alt="image-20230401231713384" style="zoom:50%;" />
+        <img src="assets/image-20230401231713384.png" alt="image-20230401231713384" style="zoom:50%;" />
 
         事务的锁获得策略有两种，一种是先全局审视事务的SQL语句，列出需要获得的锁的清单，并找到最好一个获得锁的SQL语句位置。然后先获取所有锁，然后执行SQL语句，执行到最后一个得锁语句时，进入第二个阶段，可以释放锁。第二种策略是一步一看，将事务视为SQL语句流，执行到读/写语句时，给对应数据上锁，直到遇到commit时，才一起释放所有锁然后提交。
 
@@ -1473,13 +1473,13 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
         2PL可以证明产生的调度的依赖图无圈，也就是**2PL产生的一定是冲突可串行化的调度，但是2PL不能消除脏读，因此也不能保证没有级联回滚，也可能产生死锁。**
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231720525.png" alt="image-20230401231720525" style="zoom:50%;" />
+        <img src="assets/image-20230401231720525.png" alt="image-20230401231720525" style="zoom:50%;" />
 
     - Strong Strict 2PL强严格两阶段锁协议
 
         为了解决2PL的脏读问题，实行强两阶段锁协议，与普通2PL的唯一区别在于，事务只能在提交前才能释放(所有)锁。而不能在shrinking phase边释放锁边继续执行SQL语句。这种情况无脏读，无级联回滚，但是并行度稍差。此方法依然无法避免死锁。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231733978.png" alt="image-20230401231733978" style="zoom:50%;" />
+        <img src="assets/image-20230401231733978.png" alt="image-20230401231733978" style="zoom:50%;" />
 
     - 锁的粒度、意向锁
 
@@ -1487,7 +1487,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
         实际中，为了平衡，可以不采用统一的粒度，而是多种粒度共存、使用意向锁来帮助控制。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231739616.png" alt="image-20230401231739616" style="zoom:40%;" />
+        <img src="assets/image-20230401231739616.png" alt="image-20230401231739616" style="zoom:40%;" />
 
         如图，事务T1想要访问表1，先给表1加上意向锁，表示可能读/写表里面的某一个tuple，找到要修改的tuple时，给tuple加上意向锁表示可能修改某个属性，找到最终的属性，才给它加上非意向锁。
 
@@ -1499,13 +1499,13 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
         包含意向锁的冲突互斥如图：
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231749535.png" alt="image-20230401231749535" style="zoom:40%;" />
+        <img src="assets/image-20230401231749535.png" alt="image-20230401231749535" style="zoom:40%;" />
 
         具体获得/释放锁的时机条件比较复杂，这里先略。
 
     - 死锁Deadlock
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231802924.png" alt="image-20230401231802924" style="zoom:50%;" />
+        <img src="assets/image-20230401231802924.png" alt="image-20230401231802924" style="zoom:50%;" />
 
         两个事务互相锁住了对方所需要的、自己的数据，就会导致死锁(无限的互相等待)。这是死锁最简单的情况，广义来说，**如果若干个事务形成了数据的循环等待圈，那么就会死锁**。由于死锁是全局的一个结果，而锁协议作为一种协议，每个事务只考虑到自己所见，想要从协议层面上避免死锁几乎不可能。只要涉及到访问权限，几乎都有死锁的问题，死锁和饥饿starvation是这类问题两个重大议题。
 
@@ -1554,7 +1554,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
         每个数据(object，粒度自定)X都标记有两个字段W-TS(X), R-TS(X)，分别表示X的写时间戳和读时间戳。注意这个字段跟事务无关，可以存在内存而不写入磁盘，由于无事务标号，这比lock manager的开销要小得多。当事务Ti尝试读/写X时，操作流程如图：
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231833927.png" alt="image-20230401231833927" style="zoom:50%;" />
+        <img src="assets/image-20230401231833927.png" alt="image-20230401231833927" style="zoom:50%;" />
 
         
 
@@ -1581,7 +1581,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
     OCC是一种以时间戳为基础的乐观并发控制协议。DBMS给每个事务分配一个工作区(workspace)，所有读/写的数据会被copy到工作区，写数据在工作区进行，不在修改真正的数据。当事务提交时，会检查各个事务的工作区，工作区的数据有时间戳信息，检查是否有冲突。
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231840994.png" alt="image-20230401231840994" style="zoom:40%;" />
+    <img src="assets/image-20230401231840994.png" alt="image-20230401231840994" style="zoom:40%;" />
 
     OCC与普通的T/O算法有以下几点重要的思想区别：
 
@@ -1607,13 +1607,13 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
         - Backward Validation后向验证：
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231917128.png" alt="image-20230401231917128" style="zoom:50%;" />
+            <img src="assets/image-20230401231917128.png" alt="image-20230401231917128" style="zoom:50%;" />
 
             检查事务T是否会与跟**已经提交**的事务相冲突，这个阶段检查的是A的工作区和数据库全局。**要求事务T的每个数据的写时间戳都要比数据库全局中的对应数据写时间戳要晚**，否则验证失败。后向验证解决WAW冲突。注意后向验证不需要检查读写冲突，因为T复制工作区的时候已经保证了不会有后向的读写冲突。
 
         - Forward Validation前向验证：
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231922899.png" alt="image-20230401231922899" style="zoom:50%;" />
+            <img src="assets/image-20230401231922899.png" alt="image-20230401231922899" style="zoom:50%;" />
 
             检查事务Ti是否会跟**尚未提交**的事务相冲突(千万注意，其他运行中的事务未必就比Ti晚提交，比如图中Txn#3也可能比Txn#2早commit)。检查的是A的工作区和其他正在运行的事务的工作区。检查在Ti和每一个其他运行中的事务Tj间进行，分为两种情况（这里逻辑很绕，没完全明白，可能写的不准确）
 
@@ -1660,7 +1660,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
     - 具体算法
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231941878.png" alt="image-20230401231941878" style="zoom:40%;" />
+        <img src="assets/image-20230401231941878.png" alt="image-20230401231941878" style="zoom:40%;" />
 
         首先每个事务都有一个时间戳，根据事务**开始**的时间顺序决定。
 
@@ -1683,7 +1683,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
             表数据的的新版本直接附在表后面。每个数据需要有指针指向上/下一个版本数据的位置。数据链表可以采用新数据在前/旧数据在前的方式，各有利弊。
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231952271.png" alt="image-20230401231952271" style="zoom:50%;" />
+            <img src="assets/image-20230401231952271.png" alt="image-20230401231952271" style="zoom:50%;" />
 
             
 
@@ -1691,19 +1691,19 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
             数据库中有主表，主表中是最新数据，每个数据有指针指向另一个表，是这个数据的版本表，里面是一条由新到老的版本数据链表。这种方法可以让表空间更整洁一些。
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401231957494.png" alt="image-20230401231957494" style="zoom:40%;" />
+            <img src="assets/image-20230401231957494.png" alt="image-20230401231957494" style="zoom:40%;" />
 
         - Delta Storage
 
             于Time-Travel Storage类似，只不过数据自己的版本表里面不是记录每个版本的数据的全部内容，而是记录相对于上一个版本的改变，比如数据粒度是记录，delta表里面记录的可能是相对上一个版本数据改变了的那个属性。
 
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232003888.png" alt="image-20230401232003888" style="zoom:40%;" />
+            <img src="assets/image-20230401232003888.png" alt="image-20230401232003888" style="zoom:40%;" />
 
     - 垃圾回收garbage collection
 
         MVCC还要进行垃圾回收(garbage collection)，即对老旧、不需要再用到的版本数据进行清理避免占据太多空间。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232010208.png" alt="image-20230401232010208" style="zoom:40%;" />
+        <img src="assets/image-20230401232010208.png" alt="image-20230401232010208" style="zoom:40%;" />
 
         - Tuple-level GC：？略
         - Transaction-level GC：？略
@@ -1727,7 +1727,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
     根据记录的形式，日志可以分为几类
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232035157.png" alt="image-20230401232035157" style="zoom:50%;" />
+    <img src="assets/image-20230401232035157.png" alt="image-20230401232035157" style="zoom:50%;" />
 
     - 逻辑日志：用高层的、相对抽象的语言描述系统的操作。比如对于数据库来讲，最简单的逻辑日志就是记录每个执行过的SQL语句以及是否执行成功。这种日志不含有系统存储的物理数据信息，作用可能比较有限，但比较轻量级，适合历史检查功能。逻辑日志难以实现恢复功能，尤其是有事务并发的情况。
 
@@ -1813,7 +1813,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
             
             no-force的优点：性能较好，可以避免不必要的磁盘写回，提高事务吞吐率。
             
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232043987.png" alt="image-20230401232043987" style="zoom:40%;" />
+            <img src="assets/image-20230401232043987.png" alt="image-20230401232043987" style="zoom:40%;" />
 
     - 崩溃发生时的恢复算法：
     
@@ -1831,7 +1831,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
     buffer pool策略：no-steal + force
 
-    <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232056144.png" alt="image-20230401232056144" style="zoom:40%;" />
+    <img src="assets/image-20230401232056144.png" alt="image-20230401232056144" style="zoom:40%;" />
 
     
 
@@ -1897,7 +1897,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
         崩溃恢复的关键有五个：需要undo哪些事务？需要redo哪些事务？先undo还是先redo？undo事务的顺序是怎样的？redo事务的顺序是怎样的？
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232113232.png" alt="image-20230401232113232" style="zoom:50%;" />
+        <img src="assets/image-20230401232113232.png" alt="image-20230401232113232" style="zoom:50%;" />
 
         - 各生成一个空的undo、redo list
     - 从最后一条日志记录开始，从后往前倒序扫描每条记录，直到找到日志中最后一个<Checkpoint, L>(如果没有检查点，认为日志的第0条记录就是检查点，且L为空)。在倒序扫描过程中，如果遇到<Ti, Commit>, 将Ti加入redo list。
@@ -1960,7 +1960,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
     - **LSN：日志序列号**，相当于日志记录的时间戳，包括标记记录在内的每条记录都有LSN。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232131006.png" alt="image-20230401232131006" style="zoom:50%;" />
+        <img src="assets/image-20230401232131006.png" alt="image-20230401232131006" style="zoom:50%;" />
 
         另外，在系统的其他组件中，也可能维护了一些LSN字段：
 
@@ -1982,7 +1982,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
     - **CLR：补偿日志记录**Compensation Log Record，是一种新的日志记录类型，描述了“undo某条之前的日志记录”这个系统行为。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232138144.png" alt="image-20230401232138144" style="zoom:40%;" />
+        <img src="assets/image-20230401232138144.png" alt="image-20230401232138144" style="zoom:40%;" />
 
         其格式与普通的数据修改记录一样，并且<旧数据，新数据>字段跟对应undo记录的刚好相反。此外，CL R记录还多了一个**UndoNext字段**，表示下一条需要undo的日志记录的LSN，UndoNext跟它对应的undo记录的prevLSN相同。CLR记录跟UPDATE类型的记录不同，**CLR记录永远不需要Undo**。
 
@@ -2013,7 +2013,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
     
     - **Fuzzy Checkpoint**
     
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232155211.png" alt="image-20230401232155211" style="zoom:40%;" />
+        <img src="assets/image-20230401232155211.png" alt="image-20230401232155211" style="zoom:40%;" />
     
         **模糊检查点将设置检查点的过程视为一个时间段，其间事务可以正常运行，且不要求buffer pool中的脏页全写回磁盘，但是需要生成ATT和DPT。**具体流程为：
     
@@ -2034,7 +2034,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
     
     - 事务提交流程
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232206900.png" alt="image-20230401232206900" style="zoom:40%;" />
+        <img src="assets/image-20230401232206900.png" alt="image-20230401232206900" style="zoom:40%;" />
     
         - 在日志中添加 <LSN, prevLSN, Ti, Commit>的记录，记住这条的序列号LSN
         - 将日志缓冲区中所有小于等于LSN的日志记录全都写回日志磁盘（先写日志再提交的保证机制！）。
@@ -2059,17 +2059,17 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
     
     - **崩溃恢复流程**(难点+重点)
     
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232216583.png" alt="image-20230401232216583" style="zoom:50%;" />
+        <img src="assets/image-20230401232216583.png" alt="image-20230401232216583" style="zoom:50%;" />
     
         ARIES的恢复流程分为三阶段：
     
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232221908.png" alt="image-20230401232221908" style="zoom:40%;" />
+        <img src="assets/image-20230401232221908.png" alt="image-20230401232221908" style="zoom:40%;" />
     
         - **分析阶段Analysis Phase**
     
             从checkpoint开始读日志，分析找到崩溃时的脏页和活跃事务。
     
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232235340.png" alt="image-20230401232235340" style="zoom:40%;" />
+            <img src="assets/image-20230401232235340.png" alt="image-20230401232235340" style="zoom:40%;" />
     
             先找到最后一个checkpoint(BEGIN)，可从中获得ATT和DPT。从前往后读日志记录，根据记录类型做操作
     
@@ -2089,7 +2089,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
     
             总结一下ATT的事物状态转化：
     
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232247498.png" alt="image-20230401232247498" style="zoom:50%;" />
+            <img src="assets/image-20230401232247498.png" alt="image-20230401232247498" style="zoom:50%;" />
     
         - **重做阶段Redo Phase**
     
@@ -2114,7 +2114,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
     
             逆向撤销崩溃前未提交的事务的操作。
     
-            <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232253739.png" alt="image-20230401232253739" style="zoom:45%;" />
+            <img src="assets/image-20230401232253739.png" alt="image-20230401232253739" style="zoom:45%;" />
     
             起始点是日志结尾(flushedLSN)，从后往前倒序扫描日志记录，如果该记录所属的**事务在ATT中的状态为U**，该记录不是CLR记录，则undo该记录，注意也是按记录顺序undo而不是按事务顺序。
             
@@ -2163,7 +2163,7 @@ WAW冲突：事务A写X，事务B写X，但是调度时先执行了B写X，后�
 
 MVCC实现的隔离等级是**快照隔离**（snapshot isolation）：每个事务开始执行后，它所看到的是一个它开始时间点的一个一致的数据库快照。
 
-<img src="/Users/jerryliterm/Database/notes/assets/image-20230401232316071.png" alt="image-20230401232316071" style="zoom:50%;" />
+<img src="assets/image-20230401232316071.png" alt="image-20230401232316071" style="zoom:50%;" />
 
 write skew anomaly写偏斜异常。
 
@@ -2199,7 +2199,7 @@ write skew anomaly写偏斜异常。
 
     - 结合协议
 
-        ![image-20230401232331414](/Users/jerryliterm/Database/notes/assets/image-20230401232331414.png)
+        ![image-20230401232331414](assets/image-20230401232331414.png)
 
         - MVTO
         - MVOCC
@@ -2280,7 +2280,7 @@ write skew anomaly写偏斜异常。
 
         secondary index在MVCC中相对复杂，因为key可能也会修改。
 
-        <img src="/Users/jerryliterm/Database/notes/assets/image-20230401232341189.png" alt="image-20230401232341189" style="zoom:50%;" />
+        <img src="assets/image-20230401232341189.png" alt="image-20230401232341189" style="zoom:50%;" />
 
         - 逻辑指针
 
