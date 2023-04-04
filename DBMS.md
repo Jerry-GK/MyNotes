@@ -2,6 +2,8 @@
 
 JerryG
 
+此笔记基于CMU-15445，CMU-15721，以及浙大数据库课程。
+
 ![DBMS思维导图](assets/DBMS思维导图.png)
 
 ## < 关系型数据库理论模型 Theoretical Model of Relational Database >

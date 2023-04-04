@@ -1,4 +1,6 @@
-# C++
+# C++笔记
+
+<img src="assets/image-20230404200043108.png" alt="image-20230404200043108" style="zoom:40%;" />
 
 ## C++机制
 

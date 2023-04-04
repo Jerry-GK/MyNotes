@@ -1,4 +1,8 @@
-# 引导
+# 计算机体系结构笔记
+
+
+
+## 引导
 
 计算机类型
 
@@ -26,7 +30,7 @@ MIPS(Millions of Instructions per Second):
 
 
 
-# 流水线Pipeline
+## 流水线Pipeline
 
 思想：一个流程分成多个步骤，每个步骤有单独负责的硬件，每个时刻每个硬件都在工作，处理不同的指令。
 
@@ -119,13 +123,13 @@ stall（阻塞）；暂停流水线，也称加入气泡bubble。已经在流水
 
 
 
-# 异常处理
+## 异常处理
 
 <img src="assets/image-20230401233311453.png" alt="image-20230401233311453" style="zoom:40%;" />
 
 
 
-# CSR状态控制寄存器
+## CSR状态控制寄存器
 
 是架构中重要的寄存器组（区别于x0～x31这32个通用寄存器）。
 
@@ -159,9 +163,9 @@ stall（阻塞）；暂停流水线，也称加入气泡bubble。已经在流水
 
 
 
-# Cache缓存
+## Cache缓存
 
-## Cache的概念
+### Cache的概念
 
 为了解决不同存储的速度差异问题，提出缓存概念。
 
@@ -226,7 +230,7 @@ byteoffset用于从cache的block中提取目标字节。
 
 
 
-## Cache优化
+### Cache优化
 
 性能指标
 
@@ -244,7 +248,7 @@ AMAT即平均访存时间，AMAT = Hit time + Miss Rate * Miss Penalty，提高c
 
 <img src="assets/image-20230401233439537.png" alt="image-20230401233439537" style="zoom:50%;" />
 
-### Reduce Miss Penalty
+#### Reduce Miss Penalty
 
 - multilevel cache多级缓存
 
@@ -272,7 +276,7 @@ AMAT即平均访存时间，AMAT = Hit time + Miss Rate * Miss Penalty，提高c
 
     注意这和多级cache不同，实际上地址跟主cache、victim cache的访问是并行的。
 
-### Reduce Miss Rate
+#### Reduce Miss Rate
 
 要想减少miss rate首先要知道miss的主要原因：3C原因
 
@@ -308,7 +312,7 @@ Conflict：由于cache相连模式，一个区域只能放有限个块，多余�
 
     
 
-### Reduce Hit Time
+#### Reduce Hit Time
 
 - Small / Simple cache
 
@@ -328,9 +332,9 @@ Conflict：由于cache相连模式，一个区域只能放有限个块，多余�
 
 
 
-# Memory内存
+## Memory内存
 
-## 带宽及其提升方法
+### 带宽及其提升方法
 
 Bandwidth带宽：每个时钟内存能输出的字节数
 
@@ -356,11 +360,11 @@ Bandwidth = bytes in word / word access cycle = (4 * 8) / (send address + access
 
 
 
-# 分支预测
+## 分支预测
 
 CPU中经常需要进行分支，分支结果分为两种，跳转（1）、不跳转（0）。如果进行分支预测，可以根据预测结果决定下一个PC的值，如果预测错误，需要放弃执行一些指令（分支指令开始到结束这段时间执行的指令），这些个时钟就浪费了。如果预测成功则可以节省这些时钟，所以设计合理的预测器，让预测准确率提高，是很重要的。
 
-## 预测器的位数bit
+### 预测器的位数bit
 
 一个预测器由几个bit组成，决定了预测器的状态数。最简单的预测器就是单个单比特预测器，即0预测不跳转，1预测跳转。发生跳转将预测器置为1，否则置为0。这种预测器最简单、最不“坚定”。
 
@@ -374,7 +378,7 @@ CPU中经常需要进行分支，分支结果分为两种，跳转（1）、不�
 
 
 
-## 预测器的个数 Correlating Predictor
+### 预测器的个数 Correlating Predictor
 
 单预测器有缺点：每次只根据前面一次的跳转结果进行预测。
 
@@ -386,7 +390,7 @@ CPU中经常需要进行分支，分支结果分为两种，跳转（1）、不�
 
 
 
-# 流水线的动态调度（重点?）
+## 流水线的动态调度（重点?）
 
 在宽流水线中，EX阶段可能有很多个时钟，不同类型指令时钟数可能不一样，整个流水线不像标准五级那样整齐。难以在硬件设计上（如流水线寄存器bypass、double pump）来完全解决，必须设计一种灵活的动态方法来调度指令执行。
 
@@ -396,7 +400,7 @@ CPU中经常需要进行分支，分支结果分为两种，跳转（1）、不�
 
 流水线五个流程被改成这样。注意issue（指令发射）是重要概念，指的是指令从等待队列真正进入流水线开始解析执行的过程。指令的发射有条件。
 
-## 记分板Scoreboard
+### 记分板Scoreboard
 
 <img src="assets/image-20230401233622382.png" alt="image-20230401233622382" style="zoom:40%;" />
 
@@ -441,7 +445,7 @@ CPU中经常需要进行分支，分支结果分为两种，跳转（1）、不�
 
 
 
-## Tomasulo算法
+### Tomasulo算法
 
 记分板算法的最大问题在于对于假竞争，即WAW和WAR竞争也会stall。这两种竞争本质上是写覆盖，而非读写依赖。写覆盖问题完全可以采用另找一个目的寄存器的方法（算法上表现上寄存器重命名）来解决。
 
@@ -467,7 +471,7 @@ CPU中经常需要进行分支，分支结果分为两种，跳转（1）、不�
 
 
 
-## 投机Speculation
+### 投机Speculation
 
 tomasulo和记分板都对分支跳转没有很好的处理。
 
@@ -491,7 +495,7 @@ ROB中记录的数据：目的寄存器及其值(未计算出时无效)、指令
 
 
 
-## 多发射
+### 多发射
 
 - 超标量superscalar
 
@@ -519,7 +523,7 @@ ROB中记录的数据：目的寄存器及其值(未计算出时无效)、指令
 
 
 
-## DLP（Data Level Parallelism）
+### DLP（Data Level Parallelism）
 
 提高并行度的方法主要三个层次：指令层次、数据层次、线程层次。
 
@@ -537,7 +541,7 @@ ROB中记录的数据：目的寄存器及其值(未计算出时无效)、指令
 
     
 
-## 线程并行
+### 线程并行
 
 <img src="assets/image-20230401233847202.png" alt="image-20230401233847202" style="zoom:50%;" />
 
@@ -553,7 +557,7 @@ ROB中记录的数据：目的寄存器及其值(未计算出时无效)、指令
 
 
 
-## 多处理器
+### 多处理器
 
 <img src="assets/image-20230401233908030.png" alt="image-20230401233908030" style="zoom:40%;" />
 
@@ -571,7 +575,7 @@ NUMA：non-uniform memory access
 
 
 
-## Cache Coherence 缓存一致性
+### Cache Coherence 缓存一致性
 
 多处理器的基本问题：Pi对cache的写可能无法及时同步到其他进程的cache中。
 
@@ -643,7 +647,7 @@ Exclusive：数据有效，为最新值，尚未写回disk
 
 
 
-## 数据同步
+### 数据同步
 
  <img src="assets/image-20230401234017794.png" alt="image-20230401234017794" style="zoom:40%;" />
 
