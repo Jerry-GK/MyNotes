@@ -1,4 +1,6 @@
-# Learning Notes. 
+# MyNotes
+
+<img src="assets/image-20230430172759305.png" alt="image-20230430172759305" style="zoom:40%;" />
 
 Partial personal understanding, some content may not be completely correct.
 

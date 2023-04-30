@@ -306,7 +306,85 @@ FTVM(Fault-Tolerant Virtual Machines)是基于备份的**分布式可容错虚�
 
 ## Raft
 
-Raft(Reliable, Replicated, Redundant, And Fault-Tolerant)是一种**分布式一致性算法**。[paper link](http://nil.csail.mit.edu/6.824/2020/papers/raft-extended.pdf)
+Raft(Reliable, Replicated, Redundant, And Fault-Tolerant)是一种**分布式共识算法**。[paper link](http://nil.csail.mit.edu/6.824/2020/papers/raft-extended.pdf)
+
+<img src="assets/image-20230406164515976.png" alt="image-20230406164515976" style="zoom:50%;" />
+
+- Raft在什么场景下使用？什么叫“共识算法”？
+
+    <img src="assets/image-20230405164959584.png" alt="image-20230405164959584" style="zoom:35%;" />
+
+    Raft的背景是**多副本的有限状态机**(replicated state machines)。这是一种无论是在分布式文件存储还是在分布式计算中都非常普遍的备份容错策略。基本思想是server分布式地维持若干个备份replica，每个client请求导致的server状态变化记录为一个log entry，client直接交互的是primary，对于一个或多个backup，需要primary以与自身一致的顺序向其转发log entry来维护其与primary的一致性。
+
+    多备份有限状态机的思想就是：不通过直接传递所有数据来一致，而是通过记录变化信息(delta)维持一致。
+
+    共识模块(consensus moudle)是每个状态机的一个功能模块，作用就是保证不同replica之间的log entry内容和顺序的一致，具体有两个作用
+
+    - client向primary的共识模块发送指令，然后给本地添加log entry。
+    - 与其它backup的共识模块通信、传递log信息，保证最终每个replica的log中所记录的请求(表现为log entry)的内容和顺序一致。即使某些replica server可能出现failure。
+
+    注意共识模块不负责利用log对replica进行状态转化，认为只要保证log一致，就能保证最终主从状态一致。(但是raft需要判断什么时候通过log进行状态转移才是安全的)
+
+    而Raft算法就是共识模块的一种实现算法，由Paxos改进，比Paxos更简单、高效。
+
+- 为什么需要Raft、Paxos这种分布式共识算法？
+
+    在前面介绍的多种分布式架构中，mapreduce有一个master负责协调工作、复制数据；GFS存在master，对多个chunk replica的主从关系进行分配和维护；FTVM中也需要有TAS server来控制谁两个备份谁是primary和backup。
+
+    这些系统都有一个共同特点：设立一个中心节点来维护副本之间的一致性，并假设这个中心节点工作正常、不会宕机。这个中心节点可能本身不读写真正的数据，只是负责主从关系的管理维护等。
+
+    中心化管理节点是解决脑裂问题的最自然的想法，但实际上很多时候无法保证中心节点一定稳定可靠，并且备份较多时中心节点可能负载较大、成为系统性能瓶颈。在之前，解决脑裂问题，除了中心化，人们尝试过构建绝对稳定的网络、甚至人工检测错误。Raft、Paxos的出现就是为了实现动态中心化、**在没有绝对稳定的中心节点的情况下通过“多数投票”的思想解决脑裂问题**、维护分布式一致性。
+
+    
+
+- Raft的基本思想和子问题是怎样的？
+
+    Raft首要思想就是**动态中心化**，存在一个主备份，之前成为primary，在Raft中称为leader。与client直接交互的只有leader，leader接受client的request，生成log entries，并复制传递给其它备份服务器，并且还要负责告诉其它replica什么时候根据log进行状态转移才是安全的。leader是可变的，并不完全信任leader，认为leader也可能发生failure。leader方法是首要思想，据此分为若干个子问题
+
+    - Leader Election领导选举：现有leader发生failure后如何选举新的leader？
+    - Log Replication日志复制：leader如何将自身从client接收到的request转化成的log entry复制并转发给其它replica。
+    - Safety安全性：保证系统正常运转、不会出现异常情况，具体有以下几层含义
+        - Election Safety选举安全：
+        - Leader Append-Only：leader只能追加日志，不能重写已有的log entry或将其删除。
+        - Log Matching：如果两个replica中的日志存在某个index和term都相同的entry，那么它们的所有entry完全相同。
+        - Leader Completeness：
+        - State Machine Safety：
+
+
+
+- Raft的Leader Election是怎样的？
+
+    server之间的通信逻辑图：
+
+    <img src="assets/image-20230406141308480.png" alt="image-20230406141308480" style="zoom:40%;" />
+
+    A Follower turns to a Leader and add its term, if its **election timer(ET)** elapsed.
+
+    term changes only when:
+
+    case 1: Follower become Candidate, term += 1
+
+    case 2: Follower receive a log entry from Leader with higher term, assigin.
+
+    case 3: 
+
+    | Sender/Receiver        | Msg Content               | Receiver Action                                              |
+    | ---------------------- | ------------------------- | ------------------------------------------------------------ |
+    | Leader -> Follower     | log entry (may empty)     | apply if not empty<br />clear ET                             |
+    | Leader -> Candidate    | log entry (may empty)     | turn back to Follower. <br />clear ET                        |
+    | Leader -> Leader       | log entry (may empty)     | If sender has newer term, become Follower and clear ET       |
+    | Candidate -> Follower  | RequestVote               | Vote if OK?<br />clear ET                                    |
+    | Candidate -> Leader    | RequestVote               | Refuse to vote<br />If sender has newer term, become Follower and clear ET<br />vote immediately |
+    | Candidate -> Candidate | RequestVote               | Refuse to vote<br />If sender has newer term, become Follower and clear ET<br />vote immediately |
+    | Follower -> Leader     | ACK(with term) / VoteFor? | If sender has newer term, become Follower and clear ET       |
+    | Follower -> Candidate  | VoteFor                   | If sender has newer term, become Follower and clear ET<br>Otherwise, <br />Add vote count, become Leader if vote count exceeds majority |
+    | Follower -> Follower   | ACK / VoteFor             | Ignore                                                       |
+
+    
+
+
+
+
 
 
 
